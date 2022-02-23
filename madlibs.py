@@ -1,7 +1,8 @@
 """A madlib game that compliments its users."""
 
 from random import choice
-
+from random import sample
+from random import choices
 from flask import Flask, render_template, request
 
 # "__name__" is a special Python variable for the name of the current module.
@@ -46,20 +47,21 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliments = ", ".join(choices(AWESOMENESS, k=3))
+    
 
-    return render_template("compliment.html", person=player, compliment=compliment)
+    return render_template("compliment.html", person=player, compliment=compliments)
 
 @app.route("/game")
 def show_madlib_form():
     player = request.args.get("person")
-    compliment = choice(AWESOMENESS)
+    compliments = ", ".join(choices(AWESOMENESS, k=3))
     wants_to_play = request.args.get("answer")
 
     if wants_to_play == "yes":
         return render_template("game.html")
     else:
-        return render_template("goodbye.html", person=player, compliment=compliment)
+        return render_template("goodbye.html", person=player, compliment=compliments)
     
 @app.route("/madlib")
 def show_madlib(): 
@@ -68,8 +70,18 @@ def show_madlib():
     noun = request.args.get("noun")
     adjective = request.args.get("adjective")
     number = request.args.get("number")
+    luck = request.args.get("luck")
+    lucky_choice = ["survived", "died", "run away", "got stuck", "disapeared"]
     
-    return render_template("madlib.html", person = person, color=color, noun=noun, adjective=adjective, number=number)
+    if luck == "yes":
+        luck = choice(lucky_choice)
+    else:
+        luck = "survived"
+    madlib_templates = ["madlib1.html", "madlib2.html"]
+    template_number = choice(madlib_templates)
+    
+    return render_template(template_number, person = person, color=color, noun=noun, 
+                                    adjective=adjective, number=number, luck=luck)
 
 
 

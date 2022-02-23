@@ -1,12 +1,12 @@
-<!doctype html>
-<html>
-<head>
-    <link rel="stylesheet" href="/static/madlibs.css">
+{% extends 'base.html' %}
 
-  <title> Goodbye message</title>
-</head>
-<body>
+{% block title %}Goodbye Message{% endblock %}
+
+{% block content %}
+
+
+
     Goodbye {{ person }}! I think you're {{ compliment }}! We will miss you...
- 
-</body>
-</html>
+
+
+{% endblock %}

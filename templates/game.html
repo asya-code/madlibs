@@ -1,11 +1,8 @@
-<!doctype html>
-<html>
-<head>
-  <title>The game is started!</title>
-  <link rel="stylesheet" href="/static/madlibs.css">
+{% extends 'base.html' %}
 
-</head>
-<body>
+{% block title %}The game is started!{% endblock %}
+
+{% block content %}
 
 <h1>The game is started!</h1>
 
@@ -29,9 +26,16 @@
       <option value="4">4</option>
       <option value="5">5</option>
     </select>
+    <br>
+   Are you feeling lucky?<br>
+  
+   <label>Yes</label>
+   <input type="radio" name="luck" value="yes">
+   <label>No</label> 
+   <input type="radio" name="luck" value="no">
+   <br>
+
 
   <input type="submit">
-</form>
 
-</body>
-</html>
+{% endblock %}

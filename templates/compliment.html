@@ -1,32 +1,22 @@
-<!doctype html>
-<html>
-<head>
-<title>Hello let's play!</title>
+{% extends 'base.html' %}
 
-<link rel="stylesheet" href="/static/madlibs.css">
+{% block title %}Hello Let's Play!{% endblock %}
 
-</head>
-<body>
-    Hi {{ person }}! I think you're {{ compliment }}!
-    <div>
-      <form action="/game">
-        Do you want to play a game? <br>
+{% block content %}
+Hi {{ person }}! I think you're {{ compliment }}!
+<div>
+  <form action="/game">
+    Do you want to play a game? <br>
 
-        <input type="radio" name="answer" value="yes">
-        <label>Yes!</label>
+    <input type="radio" name="answer" value="yes">
+    <label>Yes!</label>
 
-        <input type="radio" name="answer" value="no">
-        <label>No! </label> <br>
+    <input type="radio" name="answer" value="no">
+    <label>No! </label> <br>
 
-        <input type="hidden" name="person" value="{{ person }}">
-        <input type="submit">
+    <input type="hidden" name="person" value="{{ person }}">
+    <input type="submit">
 
-      </form>
+  </form>
 
-
-    </div>
-</body>
-</html>
-
-
-
+{% endblock %}
